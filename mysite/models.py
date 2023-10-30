@@ -19,7 +19,7 @@ class Insurance(models.Model):
     first_name = models.CharField(verbose_name="Имя", max_length=150)
     patronymic = models.CharField(verbose_name="Отчество", max_length=150)
     email = models.EmailField(verbose_name="E-mail", max_length=150)
-    category = models.OneToOneField(Category,verbose_name=Category._meta.verbose_name)
+    category = models.OneToOneField(Category,verbose_name=Category._meta.verbose_name, on_delete=models.CASCADE)
     date_of_conclusion = models.DateField(verbose_name="Дата заключения")
     date_of_expire = models.DateField(verbose_name="Дата окончания")
     phone_number = models.IntegerField(verbose_name="Номер телефона")
@@ -47,9 +47,18 @@ class News(models.Model):
     def __str__(self):
         return self.headline
 
+
+class QuestionCategory(models.Model):
+    name = models.CharField(verbose_name='Наименование вопроса', max_length=150)
+
+    class Meta:
+        verbose_name = "Категория вопроса"
+        verbose_name_plural = "Категории вопроса"
+
+
 # CHOICES TO CATEGORY WITH ADD
 class Question(models.Model):
-    category = models.CharField(verbose_name="Категория вопроса", max_length=150)
+    category = models.OneToOneField(QuestionCategory, verbose_name=QuestionCategory._meta.verbose_name, on_delete=models.CASCADE)
     text = models.TextField(verbose_name="Текст вопроса")
     surname = models.CharField(verbose_name="Фамилия", max_length=150)
     first_name = models.CharField(verbose_name="Имя", max_length=150)
