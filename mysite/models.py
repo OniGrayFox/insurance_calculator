@@ -71,3 +71,15 @@ class Question(models.Model):
 
     def __str__(self):
         return self.category
+
+
+# SPORT_KIND = [
+#     ("Любительский спорт", "Любительский спорт"),
+#     ("Профессиональный спорт", "Профессиональный спорт")
+#
+# ]
+# class Sports
+#
+# class Calculator(models.Model):
+#     birth_data = models.DateField(verbose_name="Дата рождения")
+#     sport = models.CharField()
