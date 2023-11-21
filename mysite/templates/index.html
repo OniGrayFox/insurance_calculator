@@ -84,69 +84,89 @@
         <div class="overlap-7">
           <div class="rectangle-2"></div>
           <div class="text-wrapper-11">КАЛЬКУЛЯТОР СТРАХОВАНИЯ</div>
-          <p class="text-wrapper-12">Рассчитайте стоимость страхования перед оформлением</p>
+          <div class="text-wrapper-11" style="padding-top: 50px">
+               {% if messages %}
+              {% for message in messages %}
+              <p  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </>
+              {% endfor %}
+              {% else %}
+
+              {% endif %}
+          </div>
+        {% if not messages %}  <p class="text-wrapper-12">Рассчитайте стоимость страхования перед оформлением</p>{% endif %}
           <div class="rectangle-3"></div>
           <p class="text-wrapper-13">Рассчитайте стоимость полиса на онлайн калькуляторе</p>
           <p class="text-wrapper-14">Оплатите страховку онлайн любой банковской картой</p>
           <p class="text-wrapper-15">Вышлем полис на электронную почту сразу после оплаты</p>
           <div class="text-wrapper-16">Порядок оформления полиса</div>
+
+          <form method="post">
+           {% csrf_token %}
+
           <div class="frame-7">
-            <div class="text-wrapper-17">Страховая сумма</div>
+
+            <div class="text-wrapper-17">
+              Сумма страхования
+            </div>
             <div class="frame-8">
-              <div class="frame-9"><div class="text-wrapper-18">100 000 Р</div></div>
-              <div class="frame-9"><div class="text-wrapper-18">200 000 Р</div></div>
-              <div class="frame-9"><div class="text-wrapper-18">300 000 Р</div></div>
+
+              <div class="frame-9"><label class="text-wrapper-18" for="{{ form.insurance_sum.id_for_label }}">Сумма</label></div>
+              {{ form.insurance_sum }}
             </div>
           </div>
           <div class="frame-10">
             <div class="text-wrapper-17">Срок страхования</div>
             <div class="frame-8">
-              <div class="frame-9"><div class="text-wrapper-18">весь год</div></div>
-              <div class="frame-9"><div class="text-wrapper-18">месяц</div></div>
+              <div ><label class="text-wrapper-18" for="{{ form.insurance_time.id_for_label }}">{{ form.insurance_time }}</label></div>
+
             </div>
           </div>
-          <div class="frame-11"><div class="text">РАССЧИТАТЬ</div></div>
+
+          <button class="frame-11" type="submit"><div class ="text">РАССЧИТАТЬ</div></button>
+
           <div class="frame-12">
             <div class="frame-13">
-              <div class="rectangle-4"></div>
-              <div class="text-wrapper-17">Занятия спортом</div>
-            </div>
-            <div class="frame-13">
-              <div class="rectangle-4"></div>
-              <div class="text-wrapper-17">Профессиональный спорт</div>
+              {{ form.sports_check }}
+              <label class="text-wrapper-17" for="{{ form.sports_check.id_for_label }}"></label>
             </div>
           </div>
           <div class="group-7">
             <div class="overlap-8">
-              <div class="text-wrapper-19">Виды спорта</div>
-              <div class="rectangle-5"></div>
+
+              <label class="text-wrapper-17" for="{{ form.sport.id_for_label }}">Вид спорта</label>
+              {{ form.sport }}
             </div>
           </div>
           <div class="group-8">
             <div class="overlap-group-3">
-              <div class="text-wrapper-20">Дата рождения</div>
-              <div class="rectangle-6"></div>
+              <label class="text-wrapper-20" for="{{ form.birth_data.id_for_label }}"> Дата рождения</label>
+              <div class="rectangle-6">{{ form.birth_data }}</div>
             </div>
           </div>
           <div class="frame-14">
             <div class="group-9">
               <div class="overlap-group-3">
-                <div class="text-wrapper-19">Дата начала</div>
-                <div class="rectangle-6"></div>
+                <div class="text-wrapper-19" for="{{ form.start_date.id_for_label }}">Дата начала</div>
+                <div class="rectangle-6">{{ form.start_date }}</div>
               </div>
             </div>
             <div class="group-10">
               <div class="overlap-group-3">
-                <div class="text-wrapper-21">Дата окончания</div>
-                <div class="rectangle-6"></div>
+                <div class="text-wrapper-21" for="{{ form.end_date.id_for_label }}">Дата окончания</div>
+                <div class="rectangle-6">{{ form.end_date }}</div>
               </div>
             </div>
-            <img class="calendar-month" src="{% static 'img/calendar-month.svg' %}" />
-            <img class="calendar-month-2" src="{% static 'img/calendar-month.svg'%}" />
+
+            {# <img class="calendar-month" src="{% static 'img/calendar-month.svg' %}" /> #}
+            {#<img class="calendar-month-2" src="{% static 'img/calendar-month.svg'%}" />#}
           </div>
-          <img class="line" src="{% static 'img/line-1.svg' %}" />
-          <img class="calendar-month-3" src="{% static 'img/calendar-month.svg' %} " />
+
+        {#  <img class="line" src="{% static 'img/line-1.svg' %}" /> #}
+          {#<img class="calendar-month-3" src="{% static 'img/calendar-month.svg' %} " /> #}
         </div>
+
+        </form>
+
         <div class="overlap-9">
           <p class="div-2">
             <span class="text-wrapper-22">Наша миссия</span>

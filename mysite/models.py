@@ -2,6 +2,16 @@ from django.db import models
 from django.utils import timezone
 
 
+class Prices(models.Model):
+    price = models.IntegerField(verbose_name="Цена")
+
+    class Meta:
+        verbose_name = 'Цены'
+        verbose_name_plural = 'Цены'
+
+    def __str__(self):
+        return f'{self.price}'
+
 class Category(models.Model):
     name = models.CharField(verbose_name="Наименование", max_length=150)
     price = models.IntegerField(verbose_name="Цена")
